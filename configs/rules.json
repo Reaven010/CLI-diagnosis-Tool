@@ -1,0 +1,112 @@
+{
+  "rules": [
+    {
+      "id": "cpu_high_usage",
+      "category": "CPU",
+      "metric": "cpu.percent",
+      "operator": ">",
+      "threshold": 85.0,
+      "severity": "critical",
+      "title": "High CPU Usage Detected",
+      "description": "Total CPU usage exceeds 85%. This can degrade overall system responsiveness.",
+      "recommendation": "Identify and close non-essential high-CPU applications using 'adaptive-cli processes'.",
+      "action_code": "kill_heavy_proc"
+    },
+    {
+      "id": "cpu_moderate_usage",
+      "category": "CPU",
+      "metric": "cpu.percent",
+      "operator": ">",
+      "threshold": 70.0,
+      "severity": "warning",
+      "title": "Elevated CPU Load",
+      "description": "CPU usage is above 70%. Heavy processing tasks are active.",
+      "recommendation": "Monitor process activity and avoid launching additional intensive operations.",
+      "action_code": null
+    },
+    {
+      "id": "memory_high_usage",
+      "category": "Memory",
+      "metric": "memory.percent",
+      "operator": ">",
+      "threshold": 90.0,
+      "severity": "critical",
+      "title": "Critically High RAM Usage",
+      "description": "System memory utilization is over 90%. System may experience freezing or thrashing.",
+      "recommendation": "Close memory-heavy applications or browser tabs.",
+      "action_code": "kill_heavy_proc"
+    },
+    {
+      "id": "memory_moderate_usage",
+      "category": "Memory",
+      "metric": "memory.percent",
+      "operator": ">",
+      "threshold": 75.0,
+      "severity": "warning",
+      "title": "High Memory Utilization",
+      "description": "RAM usage is above 75%.",
+      "recommendation": "Review open applications and clear unused background services.",
+      "action_code": null
+    },
+    {
+      "id": "disk_space_critical",
+      "category": "Disk",
+      "metric": "disk.max_percent",
+      "operator": ">",
+      "threshold": 90.0,
+      "severity": "critical",
+      "title": "Critical Low Disk Space",
+      "description": "Primary disk partition usage exceeds 90%. Low disk space can corrupt temporary files and slow down OS performance.",
+      "recommendation": "Clean system temporary files and empty package manager caches immediately.",
+      "action_code": "clear_temp_files"
+    },
+    {
+      "id": "disk_space_warning",
+      "category": "Disk",
+      "metric": "disk.max_percent",
+      "operator": ">",
+      "threshold": 80.0,
+      "severity": "warning",
+      "title": "Low Free Disk Space",
+      "description": "Disk space usage has surpassed 80%.",
+      "recommendation": "Scan for large files using 'adaptive-cli disk' and remove unneeded downloads.",
+      "action_code": "clear_temp_files"
+    },
+    {
+      "id": "dns_resolution_failure",
+      "category": "Network",
+      "metric": "network.dns_ok",
+      "operator": "==",
+      "threshold": false,
+      "severity": "critical",
+      "title": "DNS Resolution Failed",
+      "description": "Unable to resolve internet domain names (e.g. google.com).",
+      "recommendation": "Flush the system DNS cache or check network DNS resolver settings.",
+      "action_code": "flush_dns"
+    },
+    {
+      "id": "internet_offline",
+      "category": "Network",
+      "metric": "network.internet_ok",
+      "operator": "==",
+      "threshold": false,
+      "severity": "warning",
+      "title": "No Internet Connectivity",
+      "description": "Ping checks to public DNS servers (8.8.8.8, 1.1.1.1) failed.",
+      "recommendation": "Check network cable/Wi-Fi connection or try restarting your network adapter.",
+      "action_code": "restart_network"
+    },
+    {
+      "id": "temp_files_accumulated",
+      "category": "Disk",
+      "metric": "disk.temp_files_mb",
+      "operator": ">",
+      "threshold": 1000.0,
+      "severity": "warning",
+      "title": "Large Accumulation of Temp Files",
+      "description": "Over 1 GB of temporary files detected on disk.",
+      "recommendation": "Safely clean system temporary files using 'adaptive-cli config --action clear-temp'.",
+      "action_code": "clear_temp_files"
+    }
+  ]
+}

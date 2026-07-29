@@ -1,0 +1,3 @@
+# Pure Standard Python 3 Project
+# No external pip dependencies required!
+# All features use built-in Python standard libraries (os, sys, subprocess, platform, socket, ctypes, shutil, json, pathlib, unittest).
